@@ -15,7 +15,8 @@ mode = "smart"
 # - https://developers.cloudflare.com/pages/functions/bindings/#environment-variables
 # Note: Use secrets to store sensitive data.
 # - https://developers.cloudflare.com/pages/functions/bindings/#secrets
-# [vars]
+[vars]
+NODE_VERSION = "20.13.1"
 # MY_VARIABLE = "production_value"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
