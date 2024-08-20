@@ -54,9 +54,11 @@
 						{/if}
 					</button>
 				</div>
-				<pre class="pt-24">Try out the API at <a href="/api/v1/notmyproblem" class="text-blue-500"
+				<p class="font-mono pt-24">
+					Try out the API at <a href="/api/v1/notmyproblem" class="text-blue-500"
 						>/api/v1/notmyproblem</a
-					></pre>
+					>
+				</p>
 			</div>
 		</div>
 	</div>
