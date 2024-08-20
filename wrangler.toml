@@ -86,7 +86,11 @@ database_id = "90ce4425-62d9-4945-b705-94150e3fc68c"
 # id = "<PRODUCTION_NAMESPACE_ID>"
 [env.production.vars]
 NODE_VERSION = "20.13.1"
-AI = { binding = "<AI>" }
+
+# Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
+# Docs: https://developers.cloudflare.com/pages/functions/bindings/#workers-ai
+[env.production.ai]
+binding = "AI"
 
 # Bind a D1 database. D1 is Cloudflare’s native serverless SQL database.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#d1-databases
