@@ -1,18 +1,30 @@
 <script lang="ts">
+	let errorDialog: HTMLDialogElement;
 	let dialog: HTMLDialogElement;
 	let dialogReason = '';
 	let dialogReasonLoading = false;
+
+	const toTitleCase = (text: string): string => {
+		const firstPart = text.slice(0, 1);
+		const secondPart = text.slice(1);
+		return `${firstPart.toUpperCase()}${secondPart}`;
+	};
 
 	const fetchNotMyProblem = async () => {
 		if (dialogReasonLoading) return;
 		try {
 			dialogReasonLoading = true;
 			const response = await fetch('/api/v1/notmyproblem');
+
+			if (response.status !== 201) throw new Error(await response.text());
+
 			const body = await response.json();
-			dialogReason = body.reason;
+
+			dialogReason = `${toTitleCase(body.reason)}`;
 			dialog.showModal();
 		} catch (error) {
 			console.error(error);
+			errorDialog.showModal();
 		} finally {
 			dialogReasonLoading = false;
 		}
@@ -50,7 +62,17 @@
 	</div>
 </section>
 
-<dialog id="my_modal_2" class="modal" bind:this={dialog}>
+<dialog class="modal" bind:this={errorDialog}>
+	<div class="modal-box">
+		<h3 class="text-lg font-bold">Oops, an error occurred!</h3>
+		<p class="py-4">An error occurred whilst generating a reason... Oh well, not my problem!</p>
+	</div>
+	<form method="dialog" class="modal-backdrop">
+		<button>close</button>
+	</form>
+</dialog>
+
+<dialog class="modal" bind:this={dialog}>
 	<div class="modal-box">
 		<h3 class="text-lg font-bold">Not my problem!</h3>
 		<p class="py-4">{dialogReason}</p>
