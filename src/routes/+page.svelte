@@ -32,8 +32,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>NotMyProblem</title>
+	<meta name="description" content="NotMyProblem" />
 </svelte:head>
 
 <section>
