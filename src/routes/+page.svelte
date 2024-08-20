@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { writable, type Writable } from 'svelte/store';
-
 	let dialog: HTMLDialogElement;
 	let dialogReason = '';
 	let dialogReasonLoading = false;
 
 	const fetchNotMyProblem = async () => {
+		if (dialogReasonLoading) return;
 		try {
 			dialogReasonLoading = true;
 			const response = await fetch('/api/v1/notmyproblem');
