@@ -3,14 +3,17 @@
 	import Header from './Header.svelte';
 </script>
 
-<div class="app">
+<div>
 	<Header />
 
 	<main>
 		<slot />
 	</main>
 
-	<footer>
-		<p>A project by <a href="https://jonasclaes.be" target="_blank">Jonas Claes</a>.</p>
+	<footer class="footer footer-center bg-neutral text-neutral-content p-4">
+		<aside>
+			<p>A project by <a href="https://jonasclaes.be" target="_blank" class="text-blue-400">Jonas Claes</a>.</p>
+			<p>Copyright © {new Date().getFullYear()}</p>
+		</aside>
 	</footer>
 </div>
