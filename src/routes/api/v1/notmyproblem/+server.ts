@@ -33,7 +33,7 @@ export const GET: RequestHandler = async ({ platform }) => {
     const status = "Not my problem";
     const reason = modelResponse.response?.split(':')[1].trim();
 
-    await platform?.env.DATABASE.exec(`INSERT INTO notmyproblems (status, reason) VALUES ("${status}", "${reason}")`);
+    await platform?.env.DATABASE.exec(`INSERT INTO notmyproblems (status, reason) VALUES ("${status}", "${reason?.replace("\"", "\"\"")}")`);
 
     return Response.json({
         data: modelResponse,
