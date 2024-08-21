@@ -44,7 +44,7 @@
 				<p class="pt-6">This description is really not my problem. Figure it out yourself.</p>
 				<div class="pt-6">
 					<button
-						class="btn btn-primary text-neutral-100 px-12"
+						class="btn btn-primary text-neutral-100 px-12 plausible-event-name=Reason+Generations"
 						on:click={() => fetchNotMyProblem()}
 					>
 						{#if dialogReasonLoading}
