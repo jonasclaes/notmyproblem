@@ -7,7 +7,7 @@
 	<script
 		defer
 		data-domain="notmyproblem.cloud"
-		src="https://plausible.jonasclaes.be/js/script.js"
+		src="https://plausible.jonasclaes.be/js/script.tagged-events.js"
 	></script>
 </svelte:head>
 
