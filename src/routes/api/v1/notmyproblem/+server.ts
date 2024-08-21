@@ -36,8 +36,10 @@ export const GET: RequestHandler = async ({ platform }) => {
     await platform?.env.DATABASE.prepare(`INSERT INTO notmyproblems (status, reason) VALUES (?, ?)`).bind(status, reason).run();
 
     return Response.json({
-        data: modelResponse,
-        status,
-        reason
+        data: {
+            message: modelResponse,
+            status,
+            reason
+        },
     }, { status: 201 })
 };

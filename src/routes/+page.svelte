@@ -20,7 +20,7 @@
 
 			const body = await response.json();
 
-			dialogReason = `${toTitleCase(body.reason)}`;
+			dialogReason = `${toTitleCase(body.data.reason)}`;
 			dialog.showModal();
 		} catch (error) {
 			console.error(error);
