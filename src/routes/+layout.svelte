@@ -3,6 +3,14 @@
 	import Header from './Header.svelte';
 </script>
 
+<svelte:head>
+	<script
+		defer
+		data-domain="notmyproblem.cloud"
+		src="https://plausible.jonasclaes.be/js/script.js"
+	></script>
+</svelte:head>
+
 <div>
 	<Header />
 
