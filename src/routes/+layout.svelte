@@ -18,7 +18,7 @@
 				>.
 			</p>
 			<p>
-				Check out the source code on GitHub over at <a
+				Check out the code over at <a
 					href="https://github.com/jonasclaes/notmyproblem"
 					target="_blank"
 					class="text-blue-400">jonasclaes/notmyproblem</a
