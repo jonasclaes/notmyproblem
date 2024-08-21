@@ -1,38 +1,77 @@
-# create-svelte
+# NotMyProblem
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-blue)](https://developers.cloudflare.com/pages/)
 
-## Creating a project
+**NotMyProblem** is a satire website designed to humorously generate reasons why something is not your problem. Built using SvelteKit and deployed on Cloudflare Pages, the site leverages Cloudflare's D1 database and AI bindings to deliver witty and entertaining content.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 🚀 Features
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- **SvelteKit Framework**: Powered by SvelteKit, offering a responsive and snappy user experience.
+- **Cloudflare Pages**: Hosted on Cloudflare Pages, ensuring fast and secure global delivery.
+- **Cloudflare D1**: Utilizes Cloudflare's D1 serverless database to store quotes.
+- **AI Bindings**: Integrates Cloudflare's AI bindings to craft clever and comical excuses.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## 🌐 Live Site
 
-## Developing
+Check out the fun at [https://notmyproblem.cloud](https://notmyproblem.cloud)
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 🛠️ Getting Started
 
-```bash
-npm run dev
+### Prerequisites
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Before getting started, make sure you have:
 
-## Building
+- [Node.js](https://nodejs.org/) (v20.x or later)
 
-To create a production version of your app:
+### Installation
 
-```bash
-npm run build
-```
+1. **Clone the Repository**:
 
-You can preview the production build with `npm run preview`.
+   ```bash
+   git clone https://github.com/jonasclaes/notmyproblem.git
+   cd notmyproblem
+   ```
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+2. **Install Dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+4. **Run the Development Server**:
+
+   ```bash
+   npm run dev
+   ```
+
+   Visit [http://localhost:5173](http://localhost:5173) to see the app in action.
+
+### Deploying
+
+1. **Build for Production**:
+
+   ```bash
+   npm run build
+   ```
+
+2. **Deploy to Cloudflare Pages**:
+
+   Deploy the app with:
+
+   ```bash
+   wrangler pages publish ./build
+   ```
+
+   Or set up continuous deployment via Cloudflare Pages, linked to this GitHub repository.
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to open a Pull Request or submit issues.
+
+## 📄 License
+
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for more information.
+
+## 📧 Contact
+
+For any questions or feedback, reach out to [jonasclaes](https://github.com/jonasclaes) at [jonas@jonasclaes.be](mailto:jonas@jonasclaes.be).
