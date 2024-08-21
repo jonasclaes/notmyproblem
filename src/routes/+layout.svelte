@@ -17,6 +17,7 @@
 					>Jonas Claes</a
 				>.
 			</p>
+			<p>Inspired by Martijn Degrève.</p>
 			<p>
 				Check out the code over at <a
 					href="https://github.com/jonasclaes/notmyproblem"
