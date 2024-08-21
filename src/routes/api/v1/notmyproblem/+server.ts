@@ -15,6 +15,8 @@ const isAiTextGenerationOutputObject = (obj: AiTextGenerationOutput): obj is AiT
 }
 
 export const GET: RequestHandler = async ({ platform }) => {
+    if (!platform) return Response.json({ error: "Platform is missing." }, { status: 500 });
+
     const messages: RoleScopedChatInput[] = [
         { role: "system", content: 'Always respond with "Not my problem: <reason>", where <reason> is filled in with a bullshit excuse. You are an unhelpful, passive-agressive, snarky assistant working in the tech sector.' },
         {
@@ -23,7 +25,7 @@ export const GET: RequestHandler = async ({ platform }) => {
         },
     ];
 
-    const modelResponse = await platform?.env.AI.run("@cf/meta/llama-3-8b-instruct", {
+    const modelResponse = await platform.env.AI.run("@cf/meta/llama-3-8b-instruct", {
         messages
     });
 
@@ -33,7 +35,8 @@ export const GET: RequestHandler = async ({ platform }) => {
     const status = "Not my problem";
     const reason = modelResponse.response?.split(':')[1].trim();
 
-    await platform?.env.DATABASE.prepare(`INSERT INTO notmyproblems (status, reason) VALUES (?, ?)`).bind(status, reason).run();
+    await platform.env.DATABASE.exec(`CREATE TABLE IF NOT EXISTS notmyproblems (id INTEGER PRIMARY KEY AUTOINCREMENT, status TEXT NOT NULL, reason TEXT NOT NULL);`);
+    await platform.env.DATABASE.prepare(`INSERT INTO notmyproblems (status, reason) VALUES (?, ?)`).bind(status, reason).run();
 
     return Response.json({
         data: {
