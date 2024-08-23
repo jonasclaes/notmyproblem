@@ -21,7 +21,7 @@
 	<footer class="footer footer-center bg-neutral text-neutral-content p-4">
 		<aside>
 			<p>
-				A project by <a href="https://jonasclaes.be" target="_blank" class="text-blue-400"
+				A project by <a href="https://jonasclaes.be/?utm_source=notmyproblem.cloud&utm_medium=referral&utm_campaign=site_referral&utm_content=footer" target="_blank" class="text-blue-400"
 					>Jonas Claes</a
 				>.
 			</p>
