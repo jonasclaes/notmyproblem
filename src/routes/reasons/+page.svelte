@@ -64,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="p-4">
+	<div class="p-4 bg-base-200">
 		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 			{#each $reasons as reason}
 				<div class="card bg-base-100 shadow-xl text-wrap">
