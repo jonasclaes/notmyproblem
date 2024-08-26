@@ -38,7 +38,7 @@ Before getting started, make sure you have:
    npm install
    ```
 
-4. **Run the Development Server**:
+3. **Run the Development Server**:
 
    ```bash
    npm run dev
