@@ -30,6 +30,8 @@ binding = "AI"
 binding = "DATABASE"
 database_name = "notmyproblem"
 database_id = "90ce4425-62d9-4945-b705-94150e3fc68c"
+migrations_table = "__drizzle_migrations"
+migrations_dir = "./src/lib/server/db/migrations"
 
 # Bind a Durable Object. Durable objects are a scale-to-zero compute primitive based on the actor model.
 # Durable Objects can live for as long as needed. Use these when you need a long-running "server", such as in realtime apps.
@@ -98,3 +100,5 @@ binding = "AI"
 binding = "DATABASE"
 database_name = "notmyproblem"
 database_id = "90ce4425-62d9-4945-b705-94150e3fc68c"
+migrations_table = "__drizzle_migrations"
+migrations_dir = "./src/lib/server/db/migrations"
