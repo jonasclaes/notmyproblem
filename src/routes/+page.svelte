@@ -42,6 +42,12 @@
 			<div class="max-w-md">
 				<h1 class="text-5xl font-bold">NotMyProblem</h1>
 				<p class="pt-6">This description is really not my problem. Figure it out yourself.</p>
+				<p>
+					Want to see the 1000+ reasons others got before you? Go check the <a
+						href="/reasons"
+						class="text-blue-500">history</a
+					> page!
+				</p>
 				<div class="pt-6">
 					<button
 						class="btn btn-primary text-neutral-100 px-12 plausible-event-name=Reason+Generations"
@@ -50,7 +56,7 @@
 						{#if dialogReasonLoading}
 							<span class="loading loading-spinner loading-md"></span>
 						{:else}
-							Not my problem
+							Not my problem!
 						{/if}
 					</button>
 				</div>
