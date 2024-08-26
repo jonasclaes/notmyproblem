@@ -14,7 +14,7 @@ const isAiTextGenerationOutputObject = (obj: AiTextGenerationOutput): obj is AiT
     return true;
 }
 
-export const GET: RequestHandler = async ({ platform }) => {
+export const GET: RequestHandler = async ({ platform, url }) => {
     if (!platform) return Response.json({ error: "Platform is missing." }, { status: 500 });
 
     const messages: RoleScopedChatInput[] = [
@@ -44,5 +44,9 @@ export const GET: RequestHandler = async ({ platform }) => {
             status,
             reason
         },
+        _links: {
+            base: url.origin,
+            self: url.href,
+        }
     }, { status: 201 })
 };
