@@ -18,7 +18,7 @@
 
 			if (response.status !== 201) throw new Error(await response.text());
 
-			const body = await response.json();
+			const body: { data: { reason: string } } = await response.json();
 
 			dialogReason = `${toTitleCase(body.data.reason)}`;
 			dialog.showModal();
