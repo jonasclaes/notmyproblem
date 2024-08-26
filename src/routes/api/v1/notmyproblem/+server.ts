@@ -47,10 +47,6 @@ export const GET: RequestHandler = async ({ platform, url, locals: { db } }) => 
 	const status = 'Not my problem';
 	const reason = modelResponse.response?.split(':')[1].trim() ?? '';
 
-	await platform.env.DATABASE.exec(
-		`CREATE TABLE IF NOT EXISTS notmyproblems (id INTEGER PRIMARY KEY AUTOINCREMENT, status TEXT NOT NULL, reason TEXT NOT NULL);`
-	);
-
 	await db.insert(notMyProblemsTable).values({
 		status,
 		reason
