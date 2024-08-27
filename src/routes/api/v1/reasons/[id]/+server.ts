@@ -5,13 +5,24 @@ import { notMyProblemsTable } from '$lib/server/db/schema';
 export const GET: RequestHandler = async ({ url, locals: { db }, params }) => {
 	const id = parseInt(params.id);
 
-	const results = await db.query.notMyProblemsTable.findFirst({
+	const result = await db.query.notMyProblemsTable.findFirst({
 		where: eq(notMyProblemsTable.id, id)
 	});
 
+	if (!result) {
+		return Response.json(
+			{
+				error: {
+					message: 'Reason not found'
+				}
+			},
+			{ status: 404 }
+		);
+	}
+
 	return Response.json(
 		{
-			data: results,
+			data: result,
 			_links: {
 				base: url.origin,
 				self: url.href
