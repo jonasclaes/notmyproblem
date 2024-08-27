@@ -8,6 +8,8 @@
 	const reasons = writable<{ id: number; status: string; reason: string }[]>([]);
 	let moreReasonsAvailable = true;
 
+	let observerTarget: HTMLDivElement;
+
 	const toTitleCase = (text: string): string => {
 		const firstPart = text.slice(0, 1);
 		const secondPart = text.slice(1);
@@ -47,6 +49,30 @@
 
 	onMount(() => {
 		fetchReasons();
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const first = entries[0];
+				if (first.isIntersecting) {
+					fetchReasons($reasons[$reasons.length - 1].id ?? 0);
+				}
+			},
+			{
+				root: null, // Use the viewport as the root
+				rootMargin: '0px',
+				threshold: 1.0
+			}
+		);
+
+		if (observerTarget) {
+			observer.observe(observerTarget);
+		}
+
+		return () => {
+			if (observerTarget) {
+				observer.unobserve(observerTarget);
+			}
+		};
 	});
 </script>
 
@@ -65,7 +91,7 @@
 		</div>
 	</div>
 	<div class="p-4 bg-base-200">
-		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" bind:this={observerTarget}>
 			{#each $reasons as reason}
 				<div class="card bg-base-100 shadow-xl text-wrap">
 					<div class="card-body">
