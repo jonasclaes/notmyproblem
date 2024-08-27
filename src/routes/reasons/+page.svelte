@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
+	import { get, writable } from 'svelte/store';
 
 	let errorDialog: HTMLDialogElement;
 	let moreResultsLoading = false;
@@ -16,12 +16,17 @@
 		return `${firstPart.toUpperCase()}${secondPart}`;
 	};
 
-	const fetchReasons = async (cursor?: number) => {
+	const fetchReasons = async () => {
 		if (moreResultsLoading) return;
+
+		let cursor = undefined;
+		if ($reasons.length > 0) cursor = $reasons[$reasons.length - 1].id;
+
 		try {
 			moreResultsLoading = true;
 			const url = new URL($page.url);
 			url.pathname = '/api/v1/reasons';
+			url.searchParams.set('limit', '25');
 			if (cursor) url.searchParams.set('cursor', cursor.toString());
 
 			const response = await fetch(url.pathname + url.search);
@@ -48,13 +53,11 @@
 	};
 
 	onMount(() => {
-		fetchReasons();
-
 		const observer = new IntersectionObserver(
 			async (entries) => {
 				const first = entries[0];
 				if (first.isIntersecting) {
-					await fetchReasons($reasons[$reasons.length - 1].id ?? 0);
+					fetchReasons();
 				}
 			},
 			{
@@ -91,7 +94,7 @@
 		</div>
 	</div>
 	<div class="p-4 bg-base-200">
-		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" bind:this={observerTarget}>
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 			{#each $reasons as reason}
 				<div class="card bg-base-100 shadow-xl text-wrap">
 					<div class="card-body">
@@ -102,11 +105,13 @@
 			{/each}
 		</div>
 
+		<div bind:this={observerTarget} class="h-1"></div>
+
 		<div class="flex justify-center pt-12 pb-8">
 			{#if moreReasonsAvailable}
 				<button
 					class="btn btn-primary text-neutral-100 px-12 plausible-event-name=More+Reasons+Clicks"
-					on:click={() => fetchReasons($reasons[$reasons.length - 1].id)}
+					on:click={() => fetchReasons()}
 				>
 					{#if moreResultsLoading}
 						<span class="loading loading-spinner loading-md"></span>
