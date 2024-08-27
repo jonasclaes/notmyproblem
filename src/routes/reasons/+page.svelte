@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import NotMyProblemCard from '$lib/components/NotMyProblemCard.svelte';
 	import { onMount } from 'svelte';
 	import { get, writable } from 'svelte/store';
 
@@ -132,12 +133,7 @@
 	<div class="p-4 bg-base-200">
 		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 			{#each $reasons as reason}
-				<div class="card bg-base-100 shadow-xl text-wrap">
-					<div class="card-body">
-						<h2 class="card-title">{reason.status}!</h2>
-						<p>{reason.reason}</p>
-					</div>
-				</div>
+				<NotMyProblemCard notMyProblem={reason} />
 			{/each}
 		</div>
 
