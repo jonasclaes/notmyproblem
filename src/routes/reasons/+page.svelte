@@ -51,10 +51,10 @@
 		fetchReasons();
 
 		const observer = new IntersectionObserver(
-			(entries) => {
+			async (entries) => {
 				const first = entries[0];
 				if (first.isIntersecting) {
-					fetchReasons($reasons[$reasons.length - 1].id ?? 0);
+					await fetchReasons($reasons[$reasons.length - 1].id ?? 0);
 				}
 			},
 			{
