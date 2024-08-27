@@ -44,7 +44,7 @@
 	<link rel="canonical" href="https://notmyproblem.cloud" />
 
 	<!-- Open Graph tags for social media sharing -->
-	<meta property="og:title" content="NotMyProblem - AI Excuse Generator" />
+	<meta property="og:title" content="NotMyProblem - AI-Powered Excuse Generator" />
 	<meta
 		property="og:description"
 		content="Let AI help you humorously explain why it's not your problem. Visit NotMyProblem.cloud for endless excuses!"
