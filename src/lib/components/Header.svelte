@@ -3,8 +3,8 @@
 	import { getContext } from 'svelte';
 	import { type ShellContext, shellContextName } from './Shell.svelte';
 
-	export let toggleDrawer = getContext<ShellContext>(shellContextName).toggleDrawer;
-	export let menuItems = getContext<ShellContext>(shellContextName).menuItems;
+	const toggleDrawer = getContext<ShellContext>(shellContextName).toggleDrawer;
+	const menuItems = getContext<ShellContext>(shellContextName).menuItems;
 </script>
 
 <div class="navbar bg-base-100">
