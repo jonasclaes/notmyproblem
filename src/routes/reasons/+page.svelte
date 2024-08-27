@@ -120,7 +120,7 @@
 					{/if}
 				</button>
 			{:else}
-				<p>You've reached the end! Come back soon for more!</p>
+				<p class="text-center">You've reached the end! Come back soon for more!</p>
 			{/if}
 		</div>
 	</div>
