@@ -40,8 +40,8 @@
 				{/each}
 			</ul>
 		</div>
-		<div class="navbar-end">
+		<!-- <div class="navbar-end">
 			<a href="/get-started" class="btn">Get started</a>
-		</div>
+		</div> -->
 	</div>
 </header>
