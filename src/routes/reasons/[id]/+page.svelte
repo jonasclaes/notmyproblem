@@ -2,14 +2,10 @@
 	import { page } from '$app/stores';
 	import NotMyProblemCard from '$lib/components/NotMyProblemCard.svelte';
 	import { onMount } from 'svelte';
-	import { get, writable } from 'svelte/store';
 
 	let errorDialog: HTMLDialogElement;
-	let moreResultsLoading = false;
-	const reasons = writable<{ id: number; status: string; reason: string }[]>([]);
-	let moreReasonsAvailable = true;
-
-	let observerTarget: HTMLDivElement;
+	let reasonLoading = false;
+	let reason: { id: number; status: string; reason: string };
 
 	const toTitleCase = (text: string): string => {
 		const firstPart = text.slice(0, 1);
@@ -17,66 +13,36 @@
 		return `${firstPart.toUpperCase()}${secondPart}`;
 	};
 
-	const fetchReasons = async () => {
-		if (moreResultsLoading) return;
-
-		let cursor = undefined;
-		if ($reasons.length > 0) cursor = $reasons[$reasons.length - 1].id;
+	const fetchReason = async (id: string) => {
+		if (reasonLoading) return;
 
 		try {
-			moreResultsLoading = true;
+			reasonLoading = true;
 			const url = new URL($page.url);
-			url.pathname = '/api/v1/reasons';
-			url.searchParams.set('limit', '25');
-			if (cursor) url.searchParams.set('cursor', cursor.toString());
+			url.pathname = `/api/v1/reasons/${id}`;
 
 			const response = await fetch(url.pathname + url.search);
 
 			if (response.status !== 200) throw new Error(await response.text());
 
 			const body: {
-				data: { id: number; status: string; reason: string }[];
-				size: number;
-				limit: number;
+				data: { id: number; status: string; reason: string };
 			} = await response.json();
 
-			if (body.size !== body.limit) moreReasonsAvailable = false;
-
-			reasons.update((value) => {
-				return [...value, ...body.data.map((obj) => ({ ...obj, reason: toTitleCase(obj.reason) }))];
-			});
+			reason = {
+				...body.data,
+				reason: toTitleCase(body.data.reason)
+			};
 		} catch (error) {
 			console.error(error);
 			errorDialog.showModal();
 		} finally {
-			moreResultsLoading = false;
+			reasonLoading = false;
 		}
 	};
 
 	onMount(() => {
-		const observer = new IntersectionObserver(
-			async (entries) => {
-				const first = entries[0];
-				if (first.isIntersecting) {
-					fetchReasons();
-				}
-			},
-			{
-				root: null, // Use the viewport as the root
-				rootMargin: '0px',
-				threshold: 1.0
-			}
-		);
-
-		if (observerTarget) {
-			observer.observe(observerTarget);
-		}
-
-		return () => {
-			if (observerTarget) {
-				observer.unobserve(observerTarget);
-			}
-		};
+		fetchReason($page.params.id);
 	});
 </script>
 
@@ -121,40 +87,11 @@
 	</script>
 </svelte:head>
 
-<section>
-	<div class="hero bg-base-200 py-32">
-		<div class="hero-content text-center">
-			<div class="max-w-md">
-				<h1 class="text-5xl font-bold">History</h1>
-				<p class="pt-6">This became more popular than expected... Have fun reading!</p>
-			</div>
-		</div>
-	</div>
-	<div class="p-4 bg-base-200">
-		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-			{#each $reasons as reason}
-				<NotMyProblemCard notMyProblem={reason} link />
-			{/each}
-		</div>
-
-		<div bind:this={observerTarget} class="h-1"></div>
-
-		<div class="flex justify-center pt-12 pb-8">
-			{#if moreReasonsAvailable}
-				<button
-					class="btn btn-primary text-neutral-100 px-12 plausible-event-name=More+Reasons+Clicks"
-					on:click={() => fetchReasons()}
-				>
-					{#if moreResultsLoading}
-						<span class="loading loading-spinner loading-md"></span>
-					{:else}
-						Get more reasons!
-					{/if}
-				</button>
-			{:else}
-				<p class="text-center">You've reached the end! Come back soon for more!</p>
-			{/if}
-		</div>
+<section class="min-h-screen bg-base-200 flex flex-col justify-center items-center">
+	<div class="p-4 max-w-xxl">
+		{#if reason}
+			<NotMyProblemCard notMyProblem={reason} />
+		{/if}
 	</div>
 </section>
 
