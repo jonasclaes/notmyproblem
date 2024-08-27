@@ -80,8 +80,44 @@
 </script>
 
 <svelte:head>
-	<title>NotMyProblem - History</title>
-	<meta name="description" content="NotMyProblem History" />
+	<title>NotMyProblem | AI-Generated Excuses Archive</title>
+	<meta
+		name="description"
+		content="Explore our extensive archive of AI-generated excuses. Find the perfect reason why it's not your problem, backed by artificial intelligence!"
+	/>
+	<meta
+		name="keywords"
+		content="AI excuses, excuse archive, not my problem reasons, humorous excuses, responsibility avoidance"
+	/>
+	<link rel="canonical" href="https://notmyproblem.cloud/reasons" />
+
+	<!-- Open Graph tags for social media sharing -->
+	<meta property="og:title" content="NotMyProblem | AI Excuse Archive" />
+	<meta
+		property="og:description"
+		content="Dive into our treasure trove of AI-generated excuses. Browse, laugh, and find the perfect reason why it's absolutely not your problem!"
+	/>
+	<meta property="og:url" content="https://notmyproblem.cloud/reasons" />
+	<meta property="og:type" content="website" />
+
+	<!-- Twitter Card tags -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="NotMyProblem | AI-Generated Excuse Archive" />
+	<meta
+		name="twitter:description"
+		content="Explore our vast collection of AI-crafted excuses. Find the ultimate reason why it's not your responsibility!"
+	/>
+
+	<!-- Structured Data for Rich Snippets -->
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "WebPage",
+			"name": "AI-Generated Excuses Archive",
+			"description": "A comprehensive collection of AI-generated excuses and reasons why something is not your problem.",
+			"url": "https://notmyproblem.cloud/reasons"
+		}
+	</script>
 </svelte:head>
 
 <section>

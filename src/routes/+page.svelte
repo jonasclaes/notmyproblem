@@ -32,8 +32,33 @@
 </script>
 
 <svelte:head>
-	<title>NotMyProblem</title>
-	<meta name="description" content="NotMyProblem" />
+	<title>NotMyProblem | AI-Powered Excuse Generator</title>
+	<meta
+		name="description"
+		content="Generate hilarious, AI-powered reasons why something isn't your problem. Perfect for dodging responsibility with a touch of humor."
+	/>
+	<meta
+		name="keywords"
+		content="AI excuse generator, satire website, not my problem, humor, responsibility dodging"
+	/>
+	<link rel="canonical" href="https://notmyproblem.cloud" />
+
+	<!-- Open Graph tags for social media sharing -->
+	<meta property="og:title" content="NotMyProblem - AI Excuse Generator" />
+	<meta
+		property="og:description"
+		content="Let AI help you humorously explain why it's not your problem. Visit NotMyProblem.cloud for endless excuses!"
+	/>
+	<meta property="og:url" content="https://notmyproblem.cloud" />
+	<meta property="og:type" content="website" />
+
+	<!-- Twitter Card tags -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="NotMyProblem - AI-Powered Excuse Generator" />
+	<meta
+		name="twitter:description"
+		content="Generate hilarious, AI-powered reasons why something isn't your problem. Dodge responsibility with style!"
+	/>
 </svelte:head>
 
 <section>
