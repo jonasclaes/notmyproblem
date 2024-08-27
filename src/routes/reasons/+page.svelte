@@ -79,7 +79,7 @@
 		<div class="flex justify-center pt-12 pb-8">
 			{#if moreReasonsAvailable}
 				<button
-					class="btn btn-primary text-neutral-100 px-12 plausible-event-name=Reason+Generations"
+					class="btn btn-primary text-neutral-100 px-12 plausible-event-name=More+Reasons+Clicks"
 					on:click={() => fetchReasons($reasons[$reasons.length - 1].id)}
 				>
 					{#if moreResultsLoading}
