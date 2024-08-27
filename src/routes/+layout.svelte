@@ -1,7 +1,13 @@
-<script>
+<script lang="ts">
 	import '../app.css';
-	import Footer from '$lib/components/Footer.svelte';
+	import Shell from '$lib/components/Shell.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+
+	const menuItems: { href: string; text: string }[] = [
+		{ href: '/', text: 'Home' },
+		{ href: '/reasons', text: 'History' }
+	];
 </script>
 
 <svelte:head>
@@ -13,11 +19,13 @@
 </svelte:head>
 
 <div>
-	<Header />
+	<Shell {menuItems}>
+		<Header />
 
-	<main>
-		<slot />
-	</main>
+		<main>
+			<slot />
+		</main>
 
-	<Footer />
+		<Footer />
+	</Shell>
 </div>
