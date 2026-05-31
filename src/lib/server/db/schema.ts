@@ -1,7 +1,11 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { sqliteTable as table, integer, text, index } from 'drizzle-orm/sqlite-core';
 
-export const notMyProblemsTable = sqliteTable('notmyproblems', {
-	id: integer('id').primaryKey(),
+export const notMyProblemsTable = table('notmyproblems', {
+	id: integer('id').primaryKey({ autoIncrement: true }),
+	createdAt: integer('created_at')
+		.notNull()
+		.default(0)
+		.$default(() => Date.now()),
 	status: text('status').notNull(),
 	reason: text('reason').notNull()
 });
