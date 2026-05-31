@@ -17,7 +17,7 @@ mode = "smart"
 # Note: Use secrets to store sensitive data.
 # - https://developers.cloudflare.com/pages/functions/bindings/#secrets
 [vars]
-NODE_VERSION = "20.16.0"
+NODE_VERSION = "24.16.0"
 # MY_VARIABLE = "production_value"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
@@ -88,7 +88,7 @@ migrations_dir = "./src/lib/server/db/migrations"
 # binding = "MY_KV_NAMESPACE"
 # id = "<PRODUCTION_NAMESPACE_ID>"
 [env.production.vars]
-NODE_VERSION = "20.16.0"
+NODE_VERSION = "24.16.0"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#workers-ai
