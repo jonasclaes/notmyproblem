@@ -17,7 +17,7 @@ export const GET: RequestHandler = async ({ platform, url, locals: { db } }) => 
 		}
 	];
 
-	const modelResponse = await platform.env.AI.run('@cf/meta/llama-3-8b-instruct', {
+	const modelResponse = await platform.env.AI.run('@cf/meta/llama-3.1-8b-instruct-fp8', {
 		messages
 	});
 
