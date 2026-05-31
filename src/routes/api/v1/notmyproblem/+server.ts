@@ -1,21 +1,6 @@
-import { type AiTextGenerationOutput, type RoleScopedChatInput } from '@cloudflare/workers-types';
+import { type RoleScopedChatInput } from '@cloudflare/workers-types';
 import type { RequestHandler } from './$types';
 import { notMyProblemsTable } from '$lib/server/db/schema';
-
-type AiTextGenerationOutputObject = {
-	response?: string;
-	tool_calls?: {
-		name: string;
-		arguments: unknown;
-	}[];
-};
-
-const isAiTextGenerationOutputObject = (
-	obj: AiTextGenerationOutput
-): obj is AiTextGenerationOutputObject => {
-	if (obj instanceof ReadableStream) return false;
-	return true;
-};
 
 export const GET: RequestHandler = async ({ platform, url, locals: { db } }) => {
 	if (!platform) return Response.json({ error: 'Platform is missing.' }, { status: 500 });
@@ -38,11 +23,6 @@ export const GET: RequestHandler = async ({ platform, url, locals: { db } }) => 
 
 	if (!modelResponse)
 		return Response.json({ error: 'AI model returned empty response.' }, { status: 500 });
-	if (!isAiTextGenerationOutputObject(modelResponse))
-		return Response.json(
-			{ error: 'AI model returned stream instead of string response.' },
-			{ status: 500 }
-		);
 
 	const status = 'Not my problem';
 	const reason = modelResponse.response?.split(':')[1].trim() ?? '';
