@@ -15,6 +15,13 @@
       "when": 1780238491067,
       "tag": "0001_broad_purifiers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1780344398278,
+      "tag": "0002_productive_warpath",
+      "breakpoints": true
     }
   ]
 }
